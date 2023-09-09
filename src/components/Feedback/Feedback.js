@@ -2,9 +2,10 @@ import React from "react"
 import { Statistics } from "../Statistics" 
 import { FeedbackOptions } from "../FeedbackOptions/FeedbackOptions"
 import { Section } from "../Section" 
-import { NotificationManager} from "react-notifications"
-import { FeedbackContainer } from "./FeedbackStyled.js"
+
+import { FeedbackContainer } from "./Feedback.styled.jsx"
 import PropTypes from 'prop-types';
+import { Error } from "../ErrorMessage";
 
 export class Feedback extends React.Component {
     state = {
@@ -12,7 +13,7 @@ export class Feedback extends React.Component {
         neutral: 0,
         bad: 0
       }
-
+    
       onLeaveFeedback = (event) => {
         const feedbackType = event.target.dataset.type;
         this.setState(prevState => {
@@ -23,9 +24,11 @@ export class Feedback extends React.Component {
         });
       };
      
-       countTotalFeedback = () => {
-       const {good, neutral, bad} = this.state;
-        return good + neutral + bad;
+      countTotalFeedback = () => {
+        const { good, neutral, bad } = this.state;
+        const feedbackValues = Object.values({ good, neutral, bad });
+        const total = feedbackValues.reduce((acc, value) => acc + value, 0);
+        return total;
       };
     
       countPositiveFeedbackPercentage = () => {
@@ -36,6 +39,7 @@ export class Feedback extends React.Component {
   options = Object.keys(this.state);
 
     render () {
+      const totalFeedback = this.countTotalFeedback();
     return (
         <FeedbackContainer>
 <Section title="Please leave feedback">
@@ -45,9 +49,9 @@ export class Feedback extends React.Component {
   />
 </Section>
 <Section title="Statistics">
-{this.countTotalFeedback() === 0 ? (
-          NotificationManager.info('Info message')
-          ) : (
+{totalFeedback === 0 ? 
+<Error></Error>
+           : (
   <Statistics
     good={this.state.good}
     neutral={this.state.neutral}
