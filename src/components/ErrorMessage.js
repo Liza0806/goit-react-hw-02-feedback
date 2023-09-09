@@ -6,8 +6,6 @@ export const Error= () => {
     fontSize: '20px',
     marginBottom: '10px',
   };
-      return (<span style={titleStyle}>There is no feedback</span>);
-          
-        
+      return (<span style={titleStyle}>There is no feedback</span>);    
     
     };
