@@ -1,16 +1,15 @@
-import PropTypes from 'prop-types';
+
 import { OptionButton } from "./FeedbackOptions.styled.jsx"
 
-export const FeedbackOptions = ({options, onLeaveFeedback }) =>{
+export const FeedbackOptions = ({options, handleCounterIncrement }) =>{
+    console.log(options)
+    const optionKeys = Object.keys(options);
     return (
-        options.map(option=>(<OptionButton type="button" onClick={onLeaveFeedback}  data-type={option} key={option}>
+   
+        optionKeys.map(option=>(<OptionButton type="button" onClick={() => handleCounterIncrement(option)} data-type={option} key={option}>
        {option}
           </OptionButton>))
        
     )
    
 }
-FeedbackOptions.propTypes = {
-    options: PropTypes.array,
-    onLeaveFeedback: PropTypes.func.isRequired,
-};

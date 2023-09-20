@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 
 export const Statistics = ({good, neutral, bad, total, positivePercentage}) => {
+
+
     const itemStyle = {
         color: 'black',
         fontSize: '20px',
