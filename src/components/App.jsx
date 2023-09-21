@@ -56,14 +56,14 @@ export const App = () => {
 <Section title="Statistics">
 
 <Error></Error>
-          
-  <Statistics
+ {countTotalFeedback !==0 &&   <Statistics
     good={counterGood}
     neutral={counterNeutral}
     bad={counterBad}
     total={countTotalFeedback}
     positivePercentage={countPositiveFeedbackPercentage}
-  />
+  />}         
+ 
 </Section>
 </div>    
 
