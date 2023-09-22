@@ -55,7 +55,7 @@ export const App = () => {
 </Section>
 <Section title="Statistics">
 
-<Error></Error>
+{countTotalFeedback ===0 && <Error></Error>}
  {countTotalFeedback !==0 &&   <Statistics
     good={counterGood}
     neutral={counterNeutral}
